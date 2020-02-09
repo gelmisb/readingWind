@@ -143,34 +143,3 @@ Date/time,WS1;wind_speed,WS2;wind_speed,D1;wind_direction,D2;wind_direction,H1;h
 24/10/2018 23:30,7.5942,7.6316,136.05,130.7509,100,6.87207
 24/10/2018 23:40,7.6604,7.645,141.9975,136.9938,100,6.9058
 24/10/2018 23:50,7.586,7.5739,140.8077,136.7339,100,6.88995
-
-[WS1;wind_speed]
-sensor_height=85
-sensor_type=anemometer
-sensor_model=Vector L100 First Class
-serial_number=1
-[WS2;wind_speed]
-sensor_height=65
-sensor_type=anemometer
-sensor_model=Thies Anemometer First Class Advanced
-serial_number=2
-[D1;wind_direction]
-sensor_height=85
-sensor_type=wind_vane
-sensor_model=Thies Wind Vane 10 Bits Serial Synchron
-serial_number=3
-[D2;wind_direction]
-sensor_height=65
-sensor_type=wind_vane
-sensor_model=Thies Wind Vane 10 Bits Serial Synchron
-serial_number=4
-[H1;humidity]
-sensor_height=80
-sensor_type=humidity
-sensor_model=Galltec Hygro-Thermo Active Hum
-serial_number=5
-[T1;temperature]
-sensor_height=80
-sensor_type=thermometer
-sensor_model=Galltec Hygro-Thermo Active Therm
-serial_number=6

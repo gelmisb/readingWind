@@ -8,6 +8,16 @@ public class WindDataModel {
     private String humidity;
     private String temperature;
 
+    public WindDataModel(String time, String wind_speed1, String wind_speed2, String wind_direction1, String wind_direction2, String humidity, String temperature) {
+        this.time = time;
+        this.wind_speed1 = wind_speed1;
+        this.wind_speed2 = wind_speed2;
+        this.wind_direction1 = wind_direction1;
+        this.wind_direction2 = wind_direction2;
+        this.humidity = humidity;
+        this.temperature = temperature;
+    }
+
     public String getTime() { return time; }
 
     public void setTime(String time) { this.time = time; }
@@ -52,9 +62,6 @@ public class WindDataModel {
         return temperature;
     }
 
-    public void setTemperature(String temperature) {
-        this.temperature = temperature;
-    }
-
+    public void setTemperature(String temperature) { this.temperature = temperature; }
 
 }

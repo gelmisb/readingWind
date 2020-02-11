@@ -30,8 +30,8 @@ public class Reading {
             // List model for creating and populating the data
 
             // read until end of file
-            while (true) {
-                if (!in.readLine().equals("")) {
+            while (in.read() > 0) {
+                if (!(in.read() == 0)) {
                     //do something with line
                     List<WindDataModel> windData = in
                             .lines()

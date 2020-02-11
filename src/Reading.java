@@ -11,14 +11,13 @@ import java.util.stream.Collectors;
 
 
 public class Reading {
+
     public static void main(String[] args) {
         try {
             readFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     private static void readFile() throws IOException {
@@ -29,42 +28,62 @@ public class Reading {
         //Reader to read the file
         try (BufferedReader in = new BufferedReader(new FileReader("data_file.csv"))) {
             // List model for creating and populating the data
-            List<WindDataModel> windData = in
-                    .lines()
-                    .skip(0)
-                    .map(line -> {
-                        String[] x = pattern.split(line);
-                        if(line == null) {
-                            System.out.println("Null Line");
-                            return new WindDataModel(x[0],
-                                    x[1],
-                                    x[2],
-                                    x[3]);
 
-                        } else {
-                            return new WindDataModel(x[0],
-                                x[1],
-                                x[2],
-                                x[3],
-                                x[4],
-                                x[5],
-                                x[6]);
-                        }
+            // read until end of file
+            while (true) {
+                if (!in.readLine().equals("")) {
+                    //do something with line
+                    List<WindDataModel> windData = in
+                            .lines()
+                            .skip(0)
+                            .map(line -> {
+                                String[] x = pattern.split(line);
+                                return new WindDataModel(x[0],
+                                        x[1],
+                                        x[2],
+                                        x[3],
+                                        x[4],
+                                        x[5],
+                                        x[6]);
+                            }).collect(Collectors.toList());
 
-                    })
-                    .collect(Collectors.toList());
+                    // The output processes can be done with one of the latter libraries
+                    // 1. Using Google Gson library
+                    String json = new Gson().toJson(windData);
+                    System.out.println(json);
 
-            // The output processes can be done with one of the latter libraries
-            // 1. Using Google Gson library
-            String json = new Gson().toJson(windData);
-            System.out.println(json);
+                    // 2. Using ObjectMapper from Jackson
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    String jsonString = objectMapper.writeValueAsString(windData);
+                    System.out.println(jsonString);
+                    // Either options work fast and do not bring a huge load to the processing
+                } else {
+                    //do something with line
+                    List<SensorDataModel> windData = in
+                            .lines()
+                            .skip(0)
+                            .map(line -> {
+                                String[] x = pattern.split(line);
+                                return new SensorDataModel(x[0],
+                                        x[1],
+                                        x[2],
+                                        x[3],
+                                        x[4]);
+                            }).collect(Collectors.toList());
 
-            // 2. Using ObjectMapper from Jackson
-            ObjectMapper objectMapper = new ObjectMapper();
-            String jsonString = objectMapper.writeValueAsString(windData);
-            System.out.println(jsonString);
-            // Either options work fast and do not bring a huge load to the processing
-        } catch (IOException e) {
+                    // The output processes can be done with one of the latter libraries
+                    // 1. Using Google Gson library
+                    String json = new Gson().toJson(windData);
+                    System.out.println(json);
+
+                    // 2. Using ObjectMapper from Jackson
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    String jsonString = objectMapper.writeValueAsString(windData);
+                    System.out.println(jsonString);
+                    break;
+                }
+            }
+            } catch (IOException e) {
             e.printStackTrace();
         }
     }

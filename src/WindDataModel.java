@@ -18,10 +18,6 @@ public class WindDataModel {
         this.temperature = temperature;
     }
 
-    public WindDataModel(String x, String x1, String x2, String x3) {
-
-    }
-
     public String getTime() { return time; }
 
     public void setTime(String time) { this.time = time; }

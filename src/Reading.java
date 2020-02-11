@@ -17,6 +17,8 @@ public class Reading {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 
     private static void readFile() throws IOException {
@@ -32,13 +34,23 @@ public class Reading {
                     .skip(0)
                     .map(line -> {
                         String[] x = pattern.split(line);
-                        return new WindDataModel(x[0],
+                        if(line == null) {
+                            System.out.println("Null Line");
+                            return new WindDataModel(x[0],
+                                    x[1],
+                                    x[2],
+                                    x[3]);
+
+                        } else {
+                            return new WindDataModel(x[0],
                                 x[1],
                                 x[2],
                                 x[3],
                                 x[4],
                                 x[5],
                                 x[6]);
+                        }
+
                     })
                     .collect(Collectors.toList());
 
